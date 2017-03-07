@@ -176,11 +176,11 @@
                     </a>
                     <a class="mdl-navigation__link" href="">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i> Updates
-                    </a>
+                    </a>-->
                     <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i> Promos
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i> Prestamos
                     </a>
-                    <a class="mdl-navigation__link" href="">
+                    <!--<a class="mdl-navigation__link" href="">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i> Purchases
                     </a>
                     <a class="mdl-navigation__link" href="">

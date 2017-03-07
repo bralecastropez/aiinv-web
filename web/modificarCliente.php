@@ -735,7 +735,7 @@
                                                     </div>
                                                     <div>
                                                         <b>Inter&eacute;s Mensual: </b>
-                                                        <?php echo $prestamo['InteresMensual']; ?>
+                                                        <?php echo $prestamo['Interes']; ?>
                                                     </div>
                                                     <div>
                                                         <b>Fecha de Corte: </b>

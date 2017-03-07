@@ -157,7 +157,10 @@
     </script>
     <script>
         $(document).ready(function() {
-            $("#envio").submit();
+            setTimeout(function() {
+                $("#envio").submit()
+            }, 2000);
+
         });
 
     </script>

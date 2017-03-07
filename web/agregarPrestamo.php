@@ -34,10 +34,11 @@
     
     if (isset($_POST['submitted'])) { 
         foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
-        $sql = "INSERT INTO `prestamo` ( `IdUsuario` ,  `IdCliente` ,  `CodigoPrestamo` ,  `Monto` ,  `Titulo` ,  `Detalle` ,  `Estado` ,  `FechaDesembolso` ,  `FechaCorte` ,  `Mora` ,  `PeriodoPago` ,  `Interes` ,  `Plazo` ,  `MontoPagado` ,  `MontoParcial` ,  `MontoPendiente` ,  `CuotaDiaria` ,  `CuotaSemanal` ,  `CuotaQuincenal` ,  `CuotaMensual` ,  `CuotasPagadas` ,  `CuotasRestantes`  ) VALUES(  '{$_POST['IdUsuario']}' ,  '{$_POST['IdCliente']}' ,  '{$_POST['CodigoPrestamo']}' ,  '{$_POST['Monto']}', '{$_POST['Titulo']}' ,  '{$_POST['Detalle']}' ,  '{$_POST['Estado']}' ,  '{$_POST['FechaDesembolso']}' ,  '{$_POST['FechaCorteEnviar']}' ,  '{$_POST['Mora']}' ,  '{$_POST['PeriodoPago']}' ,  '{$_POST['Interes']}' ,  '{$_POST['Plazo']}' ,  '{$_POST['MontoPagado']}' ,  '{$_POST['MontoParcial']}' ,  '{$_POST['MontoPendiente']}' ,  '{$_POST['CuotaDiariaEnviar']}' ,  '{$_POST['CuotaSemanalEnviar']}' ,  '{$_POST['CuotaQuincenalEnviar']}' ,  '{$_POST['CuotaMensualEnviar']}' ,  '{$_POST['CuotasPagadas']}' ,  '{$_POST['CuotasRestantes']}'  ) "; 
+        $sql = "INSERT INTO `prestamo` ( `IdUsuario` ,  `IdCliente` ,  `CodigoPrestamo` ,  `Monto` ,  `Titulo` ,  `Detalle` ,  `Estado` ,  `FechaDesembolso` ,  `FechaCorte` ,  `Mora` ,  `PeriodoPago` ,  `Interes` ,  `Plazo` ,  `MontoPagado` ,  `MontoParcial` ,  `MontoPendiente` ,  `CuotaDiaria` ,  `CuotaSemanal` ,  `CuotaQuincenal` ,  `CuotaMensual` ,  `CuotasPagadas` ,  `CuotasRestantes`  ) VALUES(  '{$_POST['IdUsuario']}' ,  '{$_POST['IdCliente']}',  '{$_POST['CodigoPrestamo']}' ,  '{$_POST['Monto']}', '{$_POST['Titulo']}' ,  '{$_POST['Detalle']}' ,  '{$_POST['Estado']}' ,  '{$_POST['FechaDesembolso']}' ,  '{$_POST['FechaCorteEnviar']}' ,  '{$_POST['Mora']}' ,  '{$_POST['PeriodoPago']}' ,  '{$_POST['Interes']}' ,  '{$_POST['Plazo']}' ,  '{$_POST['MontoPagado']}' ,  '{$_POST['MontoParcial']}' ,  '{$_POST['MontoPendiente']}' ,  '{$_POST['CuotaDiariaEnviar']}' ,  '{$_POST['CuotaSemanalEnviar']}' ,  '{$_POST['CuotaQuincenalEnviar']}' ,  '{$_POST['CuotaMensualEnviar']}' ,  '{$_POST['CuotasPagadas']}' ,  '{$_POST['CuotasRestantes']}'  ) "; 
         mysql_query($sql) or die(mysql_error()); 
         
-        if (strpos($_POST['TipoPago'], 'Recomentado') !== false) {
+        
+        if (strpos($_POST['TipoPago'], 'Recomendado') !== false) {
             redirect("agregarPrestamo_Pago.php?IdPrestamo=" . $idpre . "&Referencia=" . ConvertirReferencia($url_referencia));
         }
         
@@ -197,23 +198,6 @@
                                     </div>
                                     <div class="Container100">
                                         <div class="ContainerIndent">
-                                            <p class="Fleft"><b>Seleccione el Periodo de Pago: </b></p>
-                                            <div class="input-group">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
-                                                    <input class="mdl-textfield__input" type="text" id="PeriodoPago" name="PeriodoPago" onclick="actualizarPrestamo();" onkeyup="actualizarPrestamo();" min="6" value="Mensual" required readonly tabIndex="-1" />
-                                                    <ul for="PeriodoPago" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                        <li class="mdl-menu__item ">Diario</li>
-                                                        <li class="mdl-menu__item ">Semanal</li>
-                                                        <li class="mdl-menu__item ">Quincenal</li>
-                                                        <li class="mdl-menu__item ">Mensual</li>
-                                                    </ul>
-                                                    <span class="mdl-textfield__error">Seleccione un periodo v&aacute;lido</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="Container100">
-                                        <div class="ContainerIndent">
                                             <br/>
                                             <p class="Fleft"><b>Ingrese un Monto: </b></p><br/>
                                             <p>Monto M&aacute;ximo Permitido: (<b>Q. <?php echo $Cliente['LimiteCredito']; ?></b>)</p>
@@ -253,11 +237,37 @@
                         </span>
                         <div class="mdl-step__content">
                             <div class="col-md-12">
-                                <div>
-                                    <button type="button" onclick="actualizarPrestamo();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                  Actualizar
-                                </button>
-                                    <hr/>
+
+                                <div class="Container100">
+                                    <div class="ContainerIndent">
+                                        <div class="Container50">
+                                            <div class="ContainerIndent">
+                                                <p class="Fleft"><b>Seleccione el Periodo de Pago: </b></p>
+                                                <div class="input-group">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                                        <input class="mdl-textfield__input" type="text" id="PeriodoPago" name="PeriodoPago" onclick="actualizarPrestamo();" onkeyup="actualizarPrestamo();" min="6" value="Mensual" required readonly tabIndex="-1" />
+                                                        <ul for="PeriodoPago" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                            <li class="mdl-menu__item ">Diario</li>
+                                                            <li class="mdl-menu__item ">Semanal</li>
+                                                            <li class="mdl-menu__item ">Quincenal</li>
+                                                            <li class="mdl-menu__item ">Mensual</li>
+                                                        </ul>
+                                                        <span class="mdl-textfield__error">Seleccione un periodo v&aacute;lido</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Container50">
+                                            <div class="ContainerIndent">
+                                                <div>
+                                                    <button type="button" onclick="actualizarPrestamo();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                      Actualizar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp Wid90">
                                     <tbody>
