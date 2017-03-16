@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Editar Grupo";
+    $page_title = "Editar Grupo";
     $page_maintance = true;
     require_once("config/page/header.php");
 
@@ -15,11 +15,11 @@
 ?>
     <form action='' method='POST' style="margin: 20px;">
         <p>
-            <b>Ingrese un Nombre:</b><br />
+            <b>Nombre:</b><br />
             <input placeholder="Nombre" type='text' name='Nombre' required data-error="Este campo es requerido" value="<?= stripslashes($row['Nombre']) ?>" />
         </p>
         <p>
-            <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
+            <b>Descripci&oacute;n (Opcional):</b><br />
             <textarea type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($row['Descripcion']) ?></textarea>
         </p>
         <p>

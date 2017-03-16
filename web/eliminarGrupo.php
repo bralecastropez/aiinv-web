@@ -14,14 +14,14 @@
 ?>
     <form action='' method='POST' style="margin: 20px;">
         <p>
-            <b>Ingrese un Nombre:</b><br />
+            <b>Nombre:</b><br />
             <input placeholder="Nombre" type='text' name='Nombre' disabled required data-error="Este campo es requerido" value="<?= stripslashes($row['Nombre']) ?>" />
         </p>
         <p>
-            <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
+            <b>Descripci&oacute;n (Opcional):</b><br />
             <textarea type='text' disabled name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($row['Descripcion']) ?></textarea>
         </p>
-        <p>
+        <div>
             <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5><br/>
             <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='listarGrupos.php'">
                 Cancelar
@@ -30,6 +30,6 @@
                 Eliminar
             </button>
             <input type='hidden' value='1' name='submitted' />
-        </p>
+        </div>
     </form>
     <?php } require_once("config/page/footer.php"); ?>

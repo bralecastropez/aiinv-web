@@ -50,7 +50,7 @@
                     <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">
                   Ver Cobradores
                 </button>
-                    <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect">
+                    <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect" onclick="verClientes(<?php echo $row['IdGrupo']; ?>);">
                   Ver Clientes
                 </button>
                 </div>
@@ -87,3 +87,10 @@
         </div>
 
         <?php } require_once("config/page/footer.php"); ?>
+
+        <script type="text/javascript">
+            var verClientes = function(idgrupo) {
+                window.location.href = "listarClientesGrupo.php?IdGrupo=" + idgrupo;
+            }
+
+        </script>

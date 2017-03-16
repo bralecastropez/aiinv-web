@@ -32,8 +32,9 @@
                     <th class="mdl-data-table__cell--non-numeric">Fecha de Corte</th>
                     <th>Monto</th>
                     <th>Interes</th>
-                    <th>Cuota Mensual</th>
+                    <th>Cuota</th>
                     <th class="mdl-data-table__cell--non-numeric">Estado</th>
+                    <th class="mdl-data-table__cell--non-numeric">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +46,7 @@ where cli.IdGrupo = " . $grupo['IdGrupo']);
                 foreach($prestamo AS $key => $value)    {$prestamo[$key] = stripslashes($value);}
                 $cliente = ObtenerCliente($prestamo['IdCliente']);
           ?>
-                    <tr>
+                    <tr data-toggle="collapse" data-target="#collapseOne_<?php echo $prestamo['IdPrestamo']; ?>">
                         <td class="mdl-data-table__cell--non-numeric">
                             <?php echo $cliente['Nombre'] . " " . $cliente['Apellido']; ?>
                         </td>
@@ -59,26 +60,95 @@ where cli.IdGrupo = " . $grupo['IdGrupo']);
                             <?php echo $prestamo['FechaCorte']; ?>
                         </td>
                         <td>
-                            <?php echo $prestamo['Monto']; ?>
+                            <?php echo "Q. " . $prestamo['Monto']; ?>
                         </td>
                         <td>
                             <?php echo $prestamo['Interes']; ?>
                         </td>
                         <td>
-                            <?php echo $prestamo['CuotaMensual']; ?>
+                            <?php echo "Q. " . $prestamo['CuotaMensual']; ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
                             <?php if($prestamo['Estado'] == 'Activo'): ?>
-                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-  <input type="checkbox" id="switch-1" class="mdl-switch__input" readonly checked>
+                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-<?php echo $prestamo['IdPrestamo']; ?>">
+  <input type="checkbox" id="switch-<?php echo $prestamo['IdPrestamo']; ?>" class="mdl-switch__input" readonly checked/>
   <span class="mdl-switch__label"></span>
+                                
+    <div class="mdl-tooltip" data-mdl-for="switch-<?php echo $prestamo['IdPrestamo']; ?>">
+        Activo
+    </div>
 </label>
                             <?php else: ?>
-                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
-  <input type="checkbox" id="switch-2" class="mdl-switch__input" readonly>
+                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-<?php echo $prestamo['IdPrestamo']; ?>">
+  <input type="checkbox" id="switch-<?php echo $prestamo['IdPrestamo']; ?>" class="mdl-switch__input" readonly/>
   <span class="mdl-switch__label"></span>
+                                                         
+    <div class="mdl-tooltip" data-mdl-for="switch-<?php echo $prestamo['IdPrestamo']; ?>">
+        Inactivo
+    </div>
 </label>
                             <?php endif; ?>
+                        </td>
+                        <td>
+                            <div class="ShowMin Fright">
+                                <div class="mdl-card__menu">
+                                    <button id="demo-menu-lower-right<?php echo $prestamo['IdPrestamo']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                  <i class="material-icons">more_vert</i>
+                                </button>
+
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $prestamo['IdPrestamo']; ?>">
+                                        <!--<a href="verGrupo.php?IdGrupo=<?php //echo $row[ 'IdGrupo']; ?>">
+                        <li class="mdl-menu__item">
+                            <button class="mdl-button mdl-js-button mdl-button--icon">
+                              <i class="material-icons">info</i>
+                            </button> Ver
+                        </li>
+                    </a>-->
+                                        <a href="modificarPrestamo.php?IdPrestamo=<?php echo $prestamo['IdPrestamo']; ?>">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                                              <i class="material-icons">create</i>
+                                            </button> Editar
+                                            </li>
+                                        </a>
+                                        <a href="eliminarPrestamo.php?IdPrestamo=<?php echo $prestamo['IdPrestamo']; ?>">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                                              <i class="material-icons">delete</i>
+                                            </button> Eliminar
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ShowMax">
+                                <button class="mdl-button mdl-js-button mdl-button--primary" onclick="ModificarPrestamo(<?php echo $prestamo['IdPrestamo']; ?>);">
+                                    <i class="material-icons">create</i>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--accent" onclick="EliminarPrestamo(<?php echo $prestamo['IdPrestamo']; ?>);">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="VerPrestamo(<?php echo $prestamo['IdPrestamo']; ?>);">
+                                    <span style="color: skyblue;" class="material-icons">remove_red_eye</span>
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr id="collapseOne_<?php echo $prestamo['IdPrestamo']; ?>" class="collapse">
+                        <td colspan="9">
+                            <div class="Fleft">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Detalle 1</td>
+                                            <td>Detalle 2</td>
+                                            <td>Detalle 3</td>
+                                            <td>Detalle 4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </td>
                     </tr>
                     <?php } ?>
@@ -87,78 +157,23 @@ where cli.IdGrupo = " . $grupo['IdGrupo']);
     </div>
     <?php 
         }
-    ?>
-
-
-    <?php
-echo "<table border=1 >"; 
-echo "<tr>"; 
-echo "<td><b>IdPrestamo</b></td>"; 
-echo "<td><b>IdUsuario</b></td>"; 
-echo "<td><b>IdCliente</b></td>"; 
-echo "<td><b>CodigoPrestamo</b></td>"; 
-echo "<td><b>FechaDesembolso</b></td>"; 
-echo "<td><b>FechaCorte</b></td>"; 
-echo "<td><b>Mora</b></td>"; 
-echo "<td><b>PeriodoPago</b></td>"; 
-echo "<td><b>Interes</b></td>"; 
-echo "<td><b>Plazo</b></td>"; 
-echo "<td><b>Detalle</b></td>"; 
-echo "<td><b>Estado</b></td>"; 
-echo "<td><b>MontoPagado</b></td>"; 
-echo "<td><b>MontoParcial</b></td>"; 
-echo "<td><b>MontoPendiente</b></td>"; 
-echo "<td><b>CuotaDiaria</b></td>"; 
-echo "<td><b>CuotaSemanal</b></td>"; 
-echo "<td><b>CuotaQuincenal</b></td>"; 
-echo "<td><b>CuotaMensual</b></td>"; 
-echo "<td><b>CuotasPagadas</b></td>"; 
-echo "<td><b>CuotasRestantes</b></td>"; 
-echo "</tr>"; 
-$result = mysql_query("SELECT * FROM `prestamo`") or trigger_error(mysql_error()); 
-while($row = mysql_fetch_array($result)){ 
-foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 
-echo "<tr>";  
-echo "<td valign='top'>" . nl2br( $row['IdPrestamo']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['IdUsuario']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['IdCliente']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CodigoPrestamo']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['FechaDesembolso']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['FechaCorte']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['Mora']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['PeriodoPago']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['Interes']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['Detalle']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['Plazo']) . "</td>";   ?>
-        <td>
-            <?php if($row['Estado'] == 'Activo'): ?>
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-  <input type="checkbox" id="switch-1" class="mdl-switch__input" readonly checked>
-  <span class="mdl-switch__label"></span>
-</label>
-            <?php else: ?>
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
-  <input type="checkbox" id="switch-2" class="mdl-switch__input" readonly>
-  <span class="mdl-switch__label"></span>
-</label>
-            <?php endif; ?>
-        </td>
-        <?php
-echo "<td valign='top'>" . nl2br( $row['Estado']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['MontoPagado']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['MontoParcial']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['MontoPendiente']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CuotaDiaria']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CuotaSemanal']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CuotaQuincenal']) . "</td>";  ?>
-            <?php
-echo "<td valign='top'>" . nl2br( $row['CuotaMensual']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CuotasPagadas']) . "</td>";  
-echo "<td valign='top'>" . nl2br( $row['CuotasRestantes']) . "</td>";  
-echo "<td valign='top'><a href=modificarPrestamo.php?IdPrestamo={$row['IdPrestamo']}>Edit</a></td><td><a href=eliminarPrestamo.php?IdPrestamo={$row['IdPrestamo']}>Delete</a></td> "; 
-echo "</tr>"; 
-} 
-echo "</table>"; 
-echo "<a href=agregarPrestamo.php>New Row</a>"; 
     require_once("config/page/footer.php");
+
+    $Referencia = ConvertirReferencia($actual_link);
 ?>
+
+
+    <script type="text/javascript">
+        var ModificarPrestamo = function(idprestamo) {
+
+        };
+
+        var EliminarPrestamo = function(idprestamo) {
+
+        };
+
+        var VerPrestamo = function(idprestamo) {
+            window.location.href = "verPrestamo.php?IdPrestamo=" + idprestamo + "&Referencia=<?php echo $Referencia; ?>";
+        };
+
+    </script>

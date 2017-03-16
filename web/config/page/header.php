@@ -23,20 +23,20 @@
         <link rel="stylesheet" href="css/mdb.min.css" />
 
         <!-- MDL -->
-        <link rel="stylesheet" href="css/mdl/material.min.css">
+        <link rel="stylesheet" href="css/mdl/material.min.css" />
         <script type="text/javascript" src="css/mdl/material.min.js"></script>
 
         <!-- User Styles -->
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/style.css" />
 
         <!-- Primefaces Core -->
-        <link rel="stylesheet" href="css/core-layout.css">
+        <link rel="stylesheet" href="css/core-layout.css" />
 
         <?php if (isset($page_maintance)): ?>
         <?php if (is_bool($page_maintance) === true): ?>
         <!-- Select -->
-        <link rel="stylesheet" href="css/mdl-selectfield/dist/mdl-selectfield.min.css">
+        <link rel="stylesheet" href="css/mdl-selectfield/dist/mdl-selectfield.min.css" />
         <link rel="stylesheet" href="css/mdl-select/getmdl-select.min.css" />
 
         <!-- Style for Inputs -->
@@ -58,7 +58,7 @@
         <script type="text/javascript" src="js/jquery.mask.js"></script>
 
         <!-- Stepper -->
-        <link rel="stylesheet" href="css/mdl-stepper/stepper.min.css">
+        <link rel="stylesheet" href="css/mdl-stepper/stepper.min.css" />
         <!-- Stepper Javascript minified -->
         <script defer src="css/mdl-stepper/stepper.min.js"></script>
 
@@ -177,7 +177,7 @@
                     <a class="mdl-navigation__link" href="">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i> Updates
                     </a>-->
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="listarPrestamos.php">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i> Prestamos
                     </a>
                     <!--<a class="mdl-navigation__link" href="">
