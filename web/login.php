@@ -106,16 +106,16 @@
 
                             <div class="md-form">
                                 <i class="fa fa-lock prefix"></i>
-                                <input type="password" id="password" name="password" class="form-control" required>
+                                <input type="password" autofocus id="password" name="password" class="form-control" required>
                                 <label data-error="Este campo es requerido" for="password">Contrase&ntilde;a</label>
                             </div>
 
                             <input type="hidden" value="1" name="login" />
 
                             <div class="text-xs-center">
-                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                <label style="color: white;">Ingresar</label>
-                            </button>
+                                <button name="BtnLogin" id="BtnLogin" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                    <label style="color: white;">Ingresar</label>
+                                </button>
                             </div>
 
                         </div>
@@ -146,3 +146,8 @@
     <?php
         require_once("config/page/footer.php");
     ?>
+
+        <script type="text/javascript">
+            $("#password").click();
+
+        </script>

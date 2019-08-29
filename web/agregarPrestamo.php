@@ -2,6 +2,7 @@
     require_once("config/db/session.php");
     require_once("config/db/handler.php");
     $page_title = "Agregar Prestamo";
+    $page_long_title = "Prestamos";
     $page_maintance = true;
     require_once("config/page/header.php");
 
@@ -45,10 +46,13 @@
         //redirect($url_referencia);
     } 
 ?>
-    <br/>
-    <br/>
+    <br class="ShowMax" />
+    <div align="center">
+        <?php ObtenerTitulo("Agregar Prestamo"); ?>
+    </div>
     <form method="post" action="" data-toggle="validator" role="form">
         <section class="mdl-stepper-demo Wid100">
+
             <div align="center">
                 <ul class="mdl-stepper mdl-stepper--feedback mdl-stepper--horizontal" id="demo-stepper-horizontal-linear-feedback">
                     <li class="mdl-step">

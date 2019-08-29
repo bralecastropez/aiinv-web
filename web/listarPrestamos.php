@@ -46,7 +46,7 @@ where cli.IdGrupo = " . $grupo['IdGrupo']);
                 foreach($prestamo AS $key => $value)    {$prestamo[$key] = stripslashes($value);}
                 $cliente = ObtenerCliente($prestamo['IdCliente']);
           ?>
-                    <tr data-toggle="collapse" data-target="#collapseOne_<?php echo $prestamo['IdPrestamo']; ?>">
+                    <tr data-toggle="collapse" data-trget="#collapseOne_<?php echo $prestamo['IdPrestamo']; ?>">
                         <td class="mdl-data-table__cell--non-numeric">
                             <?php echo $cliente['Nombre'] . " " . $cliente['Apellido']; ?>
                         </td>

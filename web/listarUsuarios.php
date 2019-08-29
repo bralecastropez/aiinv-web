@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Usuarios";
+    $page_title = "Usuarios";
     require_once("config/page/header.php"); 
     $result = mysql_query("SELECT * FROM `Usuario`") or trigger_error(mysql_error()); 
 ?>

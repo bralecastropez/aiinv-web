@@ -23,6 +23,12 @@
         .mdl-card>.mdl-card__actions {
             height: auto;
         }
+        
+        #sidebar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
 
     </style>
     <a id="add-maintance" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="agregarCliente.php">
@@ -31,21 +37,61 @@
     <div class="mdl-tooltip" data-mdl-for="add-maintance">
         Agregar Cliente
     </div>
-    <br/>
-    <br/>
-    <div class="Container100">
-        <div class="ContainerIndent TextAlCenter">
-            <h5 style="color: lightgray;">Grupo:
-                <?php echo $Grupo['Nombre']; ?>
-            </h5>
-            <br/>
-            <h5 style="color: lightgray;">
-                Cantidad de Clientes:
-                <?php
+
+    <div class="Container100" style="background-color: rgb(244, 67, 54); color: white;">
+        <div style="margin: 10px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td><b>Grupo: </b> La Asunción
+                    </td>
+                    <td><b>Nombres de Grupos:</b> Seleccionados</td>
+                </tr>
+                <tr>
+                    <td><b>Cantidad de Prestamos:</b>
+                        <?php
+                    $cantidad = mysql_fetch_array(mysql_query("select count(*) as 'cantidad' from prestamo 
+	inner join cliente cli on prestamo.idcliente = cli.idcliente
+where cli.IdGrupo = " . $Grupo['IdGrupo']));
+                    echo $cantidad['cantidad'];
+                ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Cantidad de Clientes: </b>
+                        <?php
                     $cantidad = mysql_fetch_array(mysql_query("SELECT count(*) AS 'cantidad' FROM `cliente` WHERE IdGrupo = " . $Grupo['IdGrupo']));
                     echo $cantidad['cantidad'];
                 ?>
-            </h5>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="Container100">
+        <div class="ContainerIndent TextAlCenter">
+
+            <!--<h5>
+    <p>
+        <b>Grupo</b><br/>
+        <?php //echo $Grupo['Nombre']; ?>
+    </p>
+    <p>
+        <b>Cantidad de Clientes</b><br/>
+        <?php //echo $Grupo['Nombre']; ?>
+    </p>
+</h5>
+<br/>
+<h5 style="color: lightgray;">
+    Cantidad de Clientes:
+    <?php
+                    $cantidad = mysql_fetch_array(mysql_query("SELECT count(*) AS 'cantidad' FROM `cliente` WHERE IdGrupo = " . $Grupo['IdGrupo']));
+                    echo $cantidad['cantidad'];
+                ?>
+</h5>-->
         </div>
         <hr/>
     </div>

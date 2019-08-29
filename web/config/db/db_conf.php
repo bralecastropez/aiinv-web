@@ -1,8 +1,8 @@
 <?php
 
     $db_host = "localhost";
-	$db_user = "root";
-	$db_pass = "root";
+	$db_user = "tests";
+	$db_pass = "tests";
 	$db_name = "aiinv";
 
 

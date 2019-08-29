@@ -1,5 +1,7 @@
 <?php
     require_once("config/db/session.php");
+    require_once("config/db/handler.php");
+    $page_long_title = "Grupos";
     $page_title = "Eliminar Grupo";
     require_once("config/page/header.php");
 
@@ -12,7 +14,9 @@
         } 
         $row = mysql_fetch_array ( mysql_query("SELECT * FROM `grupo` WHERE `IdGrupo` = '$IdGrupo' ")); 
 ?>
+
     <form action='' method='POST' style="margin: 20px;">
+        <?php ObtenerTitulo("Eliminar Grupo"); ?>
         <p>
             <b>Nombre:</b><br />
             <input placeholder="Nombre" type='text' name='Nombre' disabled required data-error="Este campo es requerido" value="<?= stripslashes($row['Nombre']) ?>" />

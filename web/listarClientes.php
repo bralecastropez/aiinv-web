@@ -1,9 +1,13 @@
 <?php
     require_once("config/db/session.php");
     require_once("config/db/handler.php");
-    $page_title = "Clientes";
+    $page_long_title = "Clientes";
+    $page_title = "Listado de Clientes";
     require_once("config/page/header.php");
 ?>
+    <div style="margin: 10px;">
+        <?php ObtenerTitulo( "Listado de Clientes"); ?>
+    </div>
     <style>
         .mdl-card {
             width: 100%;

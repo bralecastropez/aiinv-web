@@ -13,31 +13,31 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="css/mdl/MaterialIcons.css" />
-        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdl/MaterialIcons.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
 
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 
         <!-- Material Design Bootstrap-->
-        <link rel="stylesheet" href="css/mdb.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdb.min.css" />
 
         <!-- MDL -->
-        <link rel="stylesheet" href="css/mdl/material.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdl/material.min.css" />
         <script type="text/javascript" src="css/mdl/material.min.js"></script>
 
         <!-- User Styles -->
-        <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
 
         <!-- Primefaces Core -->
-        <link rel="stylesheet" href="css/core-layout.css" />
+        <link rel="stylesheet" type="text/css" href="css/core-layout.css" />
 
         <?php if (isset($page_maintance)): ?>
         <?php if (is_bool($page_maintance) === true): ?>
         <!-- Select -->
-        <link rel="stylesheet" href="css/mdl-selectfield/dist/mdl-selectfield.min.css" />
-        <link rel="stylesheet" href="css/mdl-select/getmdl-select.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdl-selectfield/dist/mdl-selectfield.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdl-select/getmdl-select.min.css" />
 
         <!-- Style for Inputs -->
         <style>
@@ -49,25 +49,25 @@
         </style>
 
         <!-- Select js -->
-        <script src="css/mdl-selectfield/dist/mdl-selectfield.min.js"></script>
+        <script type="text/javascript" src="css/mdl-selectfield/dist/mdl-selectfield.min.js"></script>
 
         <!-- Date picker -->
-        <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-material-datetimepicker.css" />
 
         <!-- jQuery Mask-Plugin -->
-        <script type="text/javascript" src="js/jquery.mask.js"></script>
+        <script type="text/javascript" type="text/css" src="js/jquery.mask.js"></script>
 
         <!-- Stepper -->
-        <link rel="stylesheet" href="css/mdl-stepper/stepper.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/mdl-stepper/stepper.min.css" />
         <!-- Stepper Javascript minified -->
-        <script defer src="css/mdl-stepper/stepper.min.js"></script>
+        <script type="text/javascript" defer src="css/mdl-stepper/stepper.min.js"></script>
 
         <?php endif; ?>
         <?php endif; ?>
 
     </head>
 
-    <body>
+    <body id="hammer_target" name="hammer_target">
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <!--Content-->
@@ -99,7 +99,14 @@
                 </button>-->
                 <div class="mdl-layout__header-row">
                     <span class="mdl-layout-title ShowMax">
-                        AIINV - <?php echo $page_title; ?>
+                        AIINV - 
+                        <?php 
+                            if(isset($page_long_title)) {
+                                echo $page_long_title;   
+                            } else {
+                                echo $page_title;
+                            } 
+                        ?>
                     </span>
                     <span class="mdl-layout-title ShowMin">
                         <?php echo $page_title; ?>

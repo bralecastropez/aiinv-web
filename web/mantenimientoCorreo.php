@@ -1,5 +1,6 @@
 <?php
     require_once("config/db/session.php");
+    $page_maintance = true;
     $url_referencia = $_GET['Referencia'];
     if(isset($_GET['IdCorreoCliente'])) {
         $correo_cliente = mysql_fetch_array(mysql_query("SELECT * FROM `correocliente` WHERE `IdCorreoCliente` = '" .  $_GET["IdCorreoCliente"] . "'"));
@@ -7,7 +8,7 @@
 
     switch ($_GET['Accion']) {
         case 'Agregar':
-            $page_title = "AIINV - Agregar Correo Electr&oacute;nico";
+            $page_title = "Agregar Correo Electr&oacute;nico";
             if(isset($_POST['Added'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $IdCliente = $_GET['IdCliente'];
@@ -19,7 +20,7 @@
             break;
             
         case 'Eliminar':
-            $page_title = "AIINV - Eliminar Correo Electr&oacute;nico";
+            $page_title = "Eliminar Correo Electr&oacute;nico";
             if(isset($_POST['Deleted'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "DELETE FROM `correocliente` WHERE `IdCorreoCliente` = " . $correo_cliente['IdCorreoCliente']; 
@@ -30,7 +31,7 @@
             break;
         
         case 'Modificar':
-            $page_title = "AIINV - Modificar Correo Electr&oacute;nico";
+            $page_title = "Modificar Correo Electr&oacute;nico";
             if(isset($_POST['Modified'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "UPDATE `correocliente` SET `Correo` =  '{$_POST['Correo']}' ,  `Descripcion` =  '{$_POST['Descripcion']}'   WHERE `IdCorreoCliente` = " . $correo_cliente['IdCorreoCliente']; 
@@ -53,18 +54,29 @@
         ?>
     <form method="post" action="" data-toggle="validator" role="form">
         <div class="modal-body">
-            <p>
-                <b>Ingrese un Correo Electr&oacute;nico: </b><br/>
+            <div>
+                <p><b>Ingrese un Correo Electr&oacute;nico: </b></p>
                 <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" type="email" maxlength="50" required name="Correo" id="Correo" />
                     <label class="mdl-textfield__label" for="Correo">Correo Electr&oacute;nico</label>
                     <span class="mdl-textfield__error">Debe ingresar un correo electr&oacute;nico v&aacute;lido</span>
                 </div>
-            </p>
-            <p>
-                <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
-                <textarea type='text' name='Descripcion' id='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"></textarea>
-            </p>
+            </div>
+            <div>
+                <p class="Fleft"><b>Seleccione una Descripci&oacute;n (Opcional):</b></p>
+                <div class="ContainerIndent">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                        <input class="mdl-textfield__input" type="text" id="Descripcion" name="Descripcion" value="Personal" readonly disabled tabIndex="-1" />
+                        <ul for="Descripcion" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                            <li class="mdl-menu__item">Casa</li>
+                            <li class="mdl-menu__item">Trabajo</li>
+                            <li class="mdl-menu__item">Personal</li>
+                            <li class="mdl-menu__item">Familiar</li>
+                        </ul>
+                        <span class="mdl-textfield__error">Seleccione una Descripcion</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <input type="hidden" name="Added" id="Added" value="1" />
@@ -82,18 +94,29 @@
         ?>
         <form method="post" action="" data-toggle="validator" role="form">
             <div class="modal-body">
-                <p>
-                    <b>Correo Electr&oacute;nico: </b><br/>
+                <div>
+                    <p><b>Correo Electr&oacute;nico: </b></p>
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" readonly disabled type="email" maxlength="50" required name="Correo" id="Correo" value="<?php echo stripslashes($correo_cliente['Correo']); ?>" />
                         <label class="mdl-textfield__label" for="Correo">Correo Electr&oacute;nico</label>
                         <span class="mdl-textfield__error">Debe ingresar un correo electr&oacute;nico v&aacute;lido</span>
                     </div>
-                </p>
-                <p>
-                    <b>Descripci&oacute;n:</b><br />
-                    <textarea type='text' name='Descripcion' readonly disabled placeholder="Descripci&oacute;n" class="md-textarea"><?php echo stripslashes($correo_cliente['Descripcion']);?></textarea>
-                </p>
+                </div>
+                <div>
+                    <p class="Fleft"><b>Seleccione una Descripci&oacute;n (Opcional):</b></p>
+                    <div class="ContainerIndent">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                            <input class="mdl-textfield__input" type="text" id="Descripcion" name="Descripcion" value="<?= stripslashes($correo_cliente['Descripcion']); ?>" readonly disabled tabIndex="-1" />
+                            <ul for="Descripcion" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                <li class="mdl-menu__item">Casa</li>
+                                <li class="mdl-menu__item">Trabajo</li>
+                                <li class="mdl-menu__item">Personal</li>
+                                <li class="mdl-menu__item">Familiar</li>
+                            </ul>
+                            <span class="mdl-textfield__error">Seleccione una Descripcion</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <p><strong>¿Desea eliminar este registro?</strong></p>
@@ -113,18 +136,29 @@
         ?>
         <form method="post" action="" data-toggle="validator" role="form">
             <div class="modal-body">
-                <p>
-                    <b>Ingrese un Correo Electr&oacute;nico: </b><br/>
+                <div>
+                    <p><b>Ingrese un Correo Electr&oacute;nico: </b></p>
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="email" maxlength="50" required name="Correo" id="Correo" value="<?php echo stripslashes($correo_cliente['Correo']); ?>" />
                         <label class="mdl-textfield__label" for="Correo">Correo Electr&oacute;nico</label>
                         <span class="mdl-textfield__error">Debe ingresar un correo electr&oacute;nico v&aacute;lido</span>
                     </div>
-                </p>
-                <p>
-                    <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
-                    <textarea type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?php echo stripslashes($correo_cliente['Descripcion']);?></textarea>
-                </p>
+                </div>
+                <div>
+                    <p class="Fleft"><b>Seleccione una Descripci&oacute;n (Opcional):</b></p>
+                    <div class="ContainerIndent">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                            <input class="mdl-textfield__input" type="text" id="Descripcion" name="Descripcion" value="<?= stripslashes($correo_cliente['Descripcion']); ?>" readonly tabIndex="-1" />
+                            <ul for="Descripcion" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                <li class="mdl-menu__item">Casa</li>
+                                <li class="mdl-menu__item">Trabajo</li>
+                                <li class="mdl-menu__item">Personal</li>
+                                <li class="mdl-menu__item">Familiar</li>
+                            </ul>
+                            <span class="mdl-textfield__error">Seleccione una Descripcion</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="Modified" id="Modified" value="1" />
@@ -140,7 +174,7 @@
                         break;
                 }
         
-                require_once("config/page/header.php");
+                require_once("config/page/footer.php");
         ?>
 
             <script type="text/javascript">

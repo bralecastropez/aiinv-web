@@ -41,3 +41,7 @@
         $url_r = $url;
         return $url_r;
     }
+
+    function ObtenerTitulo($titulo) {
+        echo "<br class='ShowMax'/><div class='ShowMax'><h5>" . $titulo . "<hr/></h5><!--br/--></div>";
+    }

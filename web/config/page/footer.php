@@ -5,6 +5,7 @@
 
 <!-- SCRIPTS -->
 
+
 <!-- MDL -->
 <script type="text/javascript" src="css/mdl/material.min.js"></script>
 
@@ -19,6 +20,33 @@
 
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
+
+<!-- Hammer -->
+<script type="text/javascript" src="js/hammer.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+    $(function() {
+        $(this).bind("contextmenu", function(e) {
+            e.preventDefault();
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    var hammerTarget = document.querySelector('#hammer_target');
+
+    var mc = new Hammer(hammerTarget);
+
+    mc.on("swiperight", function(ev) {
+        $(".mdl-layout__drawer-button").click();
+    });
+
+    mc.on("swipeleft", function(ev) {
+        $("#hdrbtn").click();
+    });
+
+</script>
 
 
 <?php if (isset($page_maintance)): ?>

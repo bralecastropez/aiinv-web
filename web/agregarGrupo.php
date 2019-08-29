@@ -1,5 +1,7 @@
 <?php
     require_once("config/db/session.php");
+    require_once("config/db/handler.php");
+    $page_long_title = "Grupos";
     $page_title = "Agregar Grupo";
     $page_maintance = true;
     require_once("config/page/header.php");
@@ -11,6 +13,7 @@
     } 
 ?>
     <form action='' method='POST' style="margin: 20px;">
+        <?php ObtenerTitulo("Agregar Grupo"); ?>
         <p>
             <b>Ingrese un Nombre:</b><br />
             <input placeholder="Nombre" type='text' name='Nombre' required data-error="Este campo es requerido" />
